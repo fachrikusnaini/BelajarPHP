@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($nama)){
         echo "Nama tidak boleh kosong. ";
-    } elseif (preg_match("/^[a-zA-Z ]*$/", $nama)) {
+    } elseif (!preg_match("/^[a-zA-Z ]*$/", $nama)) {
         echo "Nama hanya boleh terdiri dari huruf dan spasi. ";
     } elseif (strlen($nama) < 3 || strlen ($nama) > 70) {
         echo "Panjang nama harus antara 3 dan 70 karakter. ";
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (strlen($alamat < 3 || strlen($alamat) > 100)) {
         echo "Panjang karakter alamat hanya 3 - 100. ";
     } else {
-        $data = "INSERT INTO users (nama, user, alamat) VALUES ('$anam','$umur','$alamat')";
+        $data = "INSERT INTO users (nama, umur, alamat) VALUES ('$nama','$umur','$alamat')";
         $result = mysqli_query($conn, $data);
 
         if ($result > 0) {
@@ -51,13 +51,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <body>
         <h3>Tambah Data Mahasiswa</h3>
         <form method="POST" action="">
-            <label for="nama">Nama Lengkap:</label><br>
-            <input type="text" id="nama" name="nama"><br>
-            <label for="umur">Umur: (memasukkan umur 1 - 100)</label><br>
-            <input type="text" id="umur" name="umur"><br>
-            <label for="alamat">Alamat:</label><br>
-            <textarea name="alamat" id="alamat"></textarea><br>
-            <button type="submit" name="submit">Tambah Data</button>
+            <label for="nama">Nama Lengkap:</label>
+            <input type="text" id="nama" name="nama">
+            <label for="umur">Umur:</label>
+            <input type="text" id="umur" name="umur">
+            <label for="alamat">Alamat:</label>
+            <textarea name="alamat" id="alamat"></textarea>
+            <button type="submit" class='btn-submit' name="submit">Tambah Data</button>
         </form>
     </body>
 </html>
