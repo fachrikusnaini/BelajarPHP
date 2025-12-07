@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
             <input type="hidden" id="id_mahasiswa" name="id_mahasiswa" readonly value="<?php echo $row['id_user']; ?>">
             <label>NIM</label>
-            <input type="text" id="nim" name="nim" class="form-nim" readonly value="<?php echo $row['nim'];?>">
+            <input type="text" id="nim" name="nim" class="color-disable" readonly value="<?php echo $row['nim'];?>">
             <label>Nama Lengkap</label>
             <input type="text" id="nama" name="nama" value="<?php echo $row['nama'];?>">
             <label>Umur</label>

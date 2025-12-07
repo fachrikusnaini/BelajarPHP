@@ -9,19 +9,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $alamat = htmlspecialchars(trim($_POST["alamat"]));
 
     if (empty($nama)){
-        echo "Nama tidak boleh kosong. ";
+        echo '<script>
+        window.alert("Nama tidak boleh kosong. ");
+        </script>';
     } elseif (!preg_match("/^[a-zA-Z ]*$/", $nama)) {
-        echo "Nama hanya boleh terdiri dari huruf dan spasi. ";
+        echo '<script>
+        echo window.alert("Nama hanya boleh terdiri dari huruf dan spasi. ");
+        </script>';
     } elseif (strlen($nama) < 3 || strlen ($nama) > 70) {
-        echo "Panjang nama harus antara 3 dan 70 karakter. ";
+        echo '<script>
+        window.alert("Panjang nama harus antara 3 dan 70 karakter. ");
+        </script>';
     } elseif (empty($umur)) {
-        echo "Umur tidak boleh kosong. ";
+        echo '<script>
+        window.alert("Umur tidak boleh kosong. ");
+        </script>';
     } elseif (!ctype_digit($umur) || $umur < 17 || $umur > 60) {
-        echo "Umur hanya boleh angka dan minimal 17 - 60 tahun. ";
+        echo '<script>
+        window.alert("Umur hanya boleh angka dan minimal 17 - 60 tahun. ");
+        </script>';
     }elseif (empty($alamat)) {
-        echo "Alamat tidak boleh kosong. ";
+        echo '<script>
+        window.alert("Alamat tidak boleh kosong. ");
+        </script>';
     } elseif (strlen($alamat < 3 || strlen($alamat) > 100)) {
-        echo "Panjang karakter alamat hanya 3 - 100. ";
+        echo '<script>
+        window.alert("anjang karakter alamat hanya 3 - 100. ");
+        </script>';
     } else {
         $data = "INSERT INTO users (nama, umur, alamat) VALUES ('$nama','$umur','$alamat')";
         $result = mysqli_query($conn, $data);

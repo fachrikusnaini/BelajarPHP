@@ -15,21 +15,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $jurusan = htmlspecialchars(trim($_POST["jurusan"]));
 
     if(empty($nim)) {
-        echo "NIM Tidak boleh kosong";
+        echo '<script>
+        window.alert("NIM Tidak boleh kosong. ");
+        </script>';
     }elseif (!ctype_digit($nim)) {
-        echo "NIM harus Angka";
+        echo '<script>
+        window.alert("NIM harus Angka. ");
+        </script>';
     }elseif (strlen($nim) != 10) {
-        echo "NIM harus 10digit";
+        echo '<script>
+        window.alert("NIM harus 10digit. ");
+        </script>';
     }elseif (empty($jurusan)) {
-        echo "Jurusan tidak boleh kosong";
+        echo '<script>
+        window.alert("Jurusan tidak boleh kosong. ");
+        </script>';
     }elseif (!preg_match("/^[a-zA-Z ]*$/", $jurusan)){
-        echo "Jurusan hanya boleh terdiri dari huruf dan spasi";
+        echo '<script>
+        window.alert("Jurusan hanya boleh terdiri dari huruf dan spasi. ");
+        </script>';
     }else {
         $check = mysqli_query($conn, "SELECT * FROM MAHASISWA WHERE NIM ='$nim'");
         $checkrow = mysqli_num_rows($check);
 
         if ($checkrow > 0) {
-            echo "NIM sudah ada atau terdaftar";
+            echo '<script>
+            window.alert("NIM sudah ada atau terdaftar. ");
+            </script>';
         } else {
             $data = "INSERT INTO MAHASISWA (id_mahasiswa, nim, jurusan) VALUES ('$id_mahasiswa', '$nim', '$jurusan')";
             $result = mysqli_query($conn, $data);
@@ -65,15 +77,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 while ($row = mysqli_fetch_assoc($result)) {
             ?>
             <input type="hidden" id="id_mahasiswa" name="id_mahasiswa" value="<?php echo $row['id_user']; ?>">
-            <input type="text" id="nama" name="nama" readonly value="<?php echo $row['nama'];?>">
-            <input type="text" id="umur" name="umur" readonly value="<?php echo $row['umur'], ' Tahun';?>">
-            <input type="text" id="alamat" name="alamat" readonly value="<?php echo $row['alamat'];?>">
+            <input type="text" id="nama" name="nama" class ="color-disable" readonly value="<?php echo $row['nama'];?>">
+            <input type="text" id="umur" name="umur" class ="color-disable" readonly value="<?php echo $row['umur'], ' Tahun';?>">
+            <input type="text" id="alamat" name="alamat" class ="color-disable" readonly value="<?php echo $row['alamat'];?>">
             <label for="nim">NIM:</label>
             <input type="text" id="nim" name="nim">
             <label for="jurusan">Jurusan:</label>
             <input type="text" id="jurusan" name="jurusan"> 
-            <button type="submit" class='btn-submit' name="submit">Tambah Data</button>
-            
+            <button type="submit" class='btn-submit' name="submit">Tambah Data</button>  
             <?php 
                 }
             }
