@@ -75,17 +75,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 while ($row = mysqli_fetch_assoc($result)) {
             ?>
             <input type="hidden" id="id_mahasiswa" name="id_mahasiswa" readonly value="<?php echo $row['id_user']; ?>">
-            <label>NIM</label><br>
-            <input type="text" id="nim" name="nim" readonly value="<?php echo $row['nim'];?>"><br>
-            <label>Nama Lengkap:</label><br>
-            <input type="text" id="nama" name="nama" value="<?php echo $row['nama'];?>"><br>
-            <label>Umur:</label><br>
-            <input type="text" id="umur" name="umur" value="<?php echo $row['umur'];?>"><br>
-            <label>Alamat:</label><br>
-            <textarea id="alamat" name="alamat"><?php echo $row['alamat']; ?></textarea><br>
-            <label>Jurusan:</label><br>
-            <input type="text" id="jurusan" name="jurusan" value="<?php echo $row['jurusan'];?>"><br><br><br>
-            <button type="submit" name="submit">Tambah Data</button>
+            <label>NIM</label>
+            <input type="text" id="nim" name="nim" class="form-nim" readonly value="<?php echo $row['nim'];?>">
+            <label>Nama Lengkap</label>
+            <input type="text" id="nama" name="nama" value="<?php echo $row['nama'];?>">
+            <label>Umur</label>
+            <input type="text" id="umur" name="umur" value="<?php echo $row['umur'];?>">
+            <label>Alamat</label>
+            <textarea id="alamat" name="alamat"><?php echo $row['alamat']; ?></textarea>
+            <label>Jurusan</label>
+            <input type="text" id="jurusan" name="jurusan" value="<?php echo $row['jurusan'];?>">
+            <button type="submit" class="btn-submit" name="submit">Ubah Data</button>
             
             <?php 
                 }
